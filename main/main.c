@@ -43,7 +43,7 @@ static void spi_init()
 static void set_bg(uint16_t value)
 {
     uint8_t tx_data[6] = {
-        0, 0, 0, 1,
+        0, 0, 0, 0,
         value >> 8,
         value & 0xFF};
     spi_transaction_t t = {
@@ -117,10 +117,9 @@ void app_main(void) {
             uint8_t red = (uint8_t)(r * 15);
             uint8_t green  = (uint8_t)(g * 15);
             uint8_t blue  = (uint8_t)(b * 15);
-            if(red != 0 || blue != 0 || green != 0){
-                vTaskDelay(17 / portTICK_PERIOD_MS);
-                set_bg_rgb(red, green, blue);
-            }
+            
+            vTaskDelay(17 / portTICK_PERIOD_MS);
+            set_bg_rgb(red, green, blue);
         }
     }
 }
